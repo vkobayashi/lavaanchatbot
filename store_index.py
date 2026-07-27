@@ -24,7 +24,7 @@ pinecone_api_key = PINECONE_API_KEY
 pc = Pinecone(api_key = pinecone_api_key)
 
 index_name = "lavaan-chatbot"
-
+"""
 if not pc.has_index(index_name):
     pc.create_index(
         name=index_name,
@@ -32,10 +32,16 @@ if not pc.has_index(index_name):
         metric ="cosine",
         spec=ServerlessSpec(cloud="aws", region="us-east-1")
     )
+"""
 
 index = pc.Index(index_name)
-docsearch = PineconeVectorStore.from_documents(
-    documents = text_chunks,
+#docsearch = PineconeVectorStore.from_documents(
+#   documents = text_chunks,
+#    embedding = embeddings,
+#    index_name = index_name
+#
+#)
+docsearch = PineconeVectorStore.from_existing_index(
     embedding = embeddings,
     index_name = index_name
 
