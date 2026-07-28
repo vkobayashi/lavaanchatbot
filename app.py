@@ -8,6 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 import os
+import markdown
 
 
 app = Flask(__name__)
@@ -63,7 +64,7 @@ def chat():
     print(input)
     response = rag_chain.invoke({"input": msg})
     print("Response : ", response["answer"])
-    return str(response["answer"])
+    return markdown.markdown(str(response["answer"]))
 
 
 
